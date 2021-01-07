@@ -22,31 +22,3 @@ This conversion script is updated from https://github.com/Layout-Parser/layout-m
 cs555_project.py script or cs555_projectFinal.ipynb notebook should be run in order to make object predictions and dataset evaluations. This project is run on Google Colab.
 
 
-## Steps to test pretrained models locally or jump to next section for docker deployment
-* Install the latest `Detectron2` from https://github.com/facebookresearch/detectron2
-* Copy config files (`DLA_*`) from this repo to the installed Detectron2
-* Download the relevant model from the `Benchmarking` section. If you have downloaded model using `wget` then refer https://github.com/hpanwar08/detectron2/issues/22
-* Add the below code in demo/demo.py in the `main`to get confidence along with label names
-```
-from detectron2.data import MetadataCatalog
-MetadataCatalog.get("dla_val").thing_classes = ['text', 'title', 'list', 'table', 'figure']
-```
-* Then run below command for prediction on single image (change the config file relevant to the model)
-```
-python demo/demo.py --config-file configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml --input "<path to image.jpg>" --output <path to save the predicted image> --confidence-threshold 0.5 --opts MODEL.WEIGHTS <path to model_final_trimmed.pth> MODEL.DEVICE cpu
-```
-
-
-## Sample results from detectron2
-
-| <img src="assets/images/resnext101_32x8d/PMC1247189_00000.jpg" width=400> | <img src="assets/images/resnext101_32x8d/PMC1247608_00001.jpg" width=400> |
-|---------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| <img src="assets/images/resnext101_32x8d/PMC1281292_00001.jpg" width=400> | <img src="assets/images/resnext101_32x8d/PMC1343590_00003.jpg" width=400> |
-| <img src="assets/images/resnext101_32x8d/PMC2778503_00000.jpg" width=400> | <img src="assets/images/resnext101_32x8d/PMC6052416_00007.jpg" width=400> |
-| <img src="assets/images/resnext101_32x8d/PMC6095069_00001.jpg" width=400> | <img src="assets/images/resnext101_32x8d/PMC6095088_00000.jpg" width=400> |
-| <img src="assets/images/resnext101_32x8d/PMC6098231_00004.jpg" width=400> |                                                                           |
-
---- 
-
-
-
