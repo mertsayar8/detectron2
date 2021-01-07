@@ -2,19 +2,23 @@
 
 ---
 
-## Detectron2 trained on [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) dataset
+This project focuses on cross domain Document Object Detection (DOD). DOD is the task of decomposing a document page image into structural and logical units such as texts, titles, lists, figures. In this paper, recent research on this task is discussed, two recent datasets used in research namely Publaynet and  PRImA Layout Analysis are summarized and a method based on Mask RCNN and feature pyramid networks is given using recently released large-scaled dataset Publaynet training data for cross domain DOD task on PRImA Layout Analysis Dataset. Results on PRImA and validation set of Publaynet are compared.
 
-This repo contains the training configurations, code and trained models trained on [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) dataset  using [Detectron2](https://github.com/facebookresearch/detectron2) implementation.  
-[PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) is a very large dataset for document layout analysis (document segmentation). It can be used to trained semantic segmentation/Object detection models.
-[PRI
+This project is forked from https://github.com/hpanwar08/detectron2 and uses the pre-trained network on [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) dataset.
 
-NOTE  
-* Models are trained on a portion of the dataset (train-0.zip, train-1.zip, train-2.zip, train-3.zip)
-* Trained on total 191,832 images
-* Models are evaluated on dev.zip (~11,000 images)
-* Backbone pretrained on COCO dataset is used but trained from scratch on PubLayNet dataset
-* Trained using Nvidia GTX 1080Ti 11GB
-* Trained on Windows 10
+PRImA dataset can be reached from https://www.primaresearch.org/datasets/Layout_Analysis.
+
+Conversion from PRImA PAGEXML to COCOJSON format can be done with running convert_prima_to_coco.py script. Input of the script should be --prima_datapath "path_to_your_folder". Your PRImA folder should have XML and Images folders as subfolders. AFter running the script, final destination should be like:
+        ```bash
+        data/
+        └── prima/
+            ├── Images/
+            ├── XML/
+            ├── License.txt
+            └── annotations*.json
+        ```
+cs555_project.py script or cs555_projectFinal.ipynb notebook should be run in order to make object predictions and dataset evaluations. This project is run on Google Colab.
+
 
 ## Steps to test pretrained models locally or jump to next section for docker deployment
 * Install the latest `Detectron2` from https://github.com/facebookresearch/detectron2
@@ -51,27 +55,6 @@ python demo/demo.py --config-file configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml 
 | [MaskRCNN Resnet101 FPN 3X](https://www.dropbox.com/sh/wgt9skz67usliei/AAD9n6qbsyMz1Y3CwpZpHXCpa?dl=0)        | configs/DLA_mask_rcnn_R_101_FPN_3x.yaml       | ./tools/train_net_dla.py |
 | [MaskRCNN Resnet50 FPN 3X](https://www.dropbox.com/sh/44ez171b2qaocd2/AAB0huidzzOXeo99QdplZRjua?dl=0)       | configs/DLA_mask_rcnn_R_50_FPN_3x.yaml       | ./tools/train_net_dla.py |
 
-
-
-## Some helper code and cli commands  
-
-Add the below code in demo/demo.py to get confidence along with label names
-```
-from detectron2.data import MetadataCatalog
-MetadataCatalog.get("dla_val").thing_classes = ['text', 'title', 'list', 'table', 'figure']
-```
-
-Then run below command for prediction on single image
-```
-python demo/demo.py --config-file configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml --input "<path to image.jpg>" --output <path to save the predicted image> --confidence-threshold 0.5 --opts MODEL.WEIGHTS <path to model_final_trimmed.pth> MODEL.DEVICE cpu
-```
-
-### TODOs ⏰
-
-- [ ] Train MaskRCNN resnet50  
-
-
----
 
 ## Sample results from detectron2
 
