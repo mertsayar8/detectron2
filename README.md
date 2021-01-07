@@ -36,27 +36,6 @@ MetadataCatalog.get("dla_val").thing_classes = ['text', 'title', 'list', 'table'
 python demo/demo.py --config-file configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml --input "<path to image.jpg>" --output <path to save the predicted image> --confidence-threshold 0.5 --opts MODEL.WEIGHTS <path to model_final_trimmed.pth> MODEL.DEVICE cpu
 ```
 
-## Docker Deployment
-* For local docker deployment for testing use [Docker DLA](https://github.com/hpanwar08/document-layout-analysis-app)
-
-## Benchmarking  
-
-| Architecture                                                                                                  | No. images | AP     | AP50   | AP75   | AP Small | AP Medium | AP Large | Model size full | Model size trimmed |
-|---------------------------------------------------------------------------------------------------------------|------------|--------|--------|--------|----------|-----------|----------|--------------------|-----------------|
-| [MaskRCNN Resnext101_32x8d FPN 3X](https://www.dropbox.com/sh/1098ym6vhad4zi6/AABe16eSdY_34KGp52W0ruwha?dl=0) | 191,832    | 90.574 | 97.704 | 95.555 | 39.904   | 76.350    | 95.165   | 816M               | 410M            |
-| [MaskRCNN Resnet101 FPN 3X](https://www.dropbox.com/sh/wgt9skz67usliei/AAD9n6qbsyMz1Y3CwpZpHXCpa?dl=0)        | 191,832    | 90.335 | 96.900 | 94.609 | 36.588   | 73.672    | 94.533   |480M                    | 240M            |
-| [MaskRCNN Resnet50 FPN 3X](https://www.dropbox.com/sh/44ez171b2qaocd2/AAB0huidzzOXeo99QdplZRjua?dl=0)                                                                                                              | 191,832           | 87.219       | 96.949       | 94.385       | 38.164         | 72.292          |  94.081        |                    |  168M               |
-
-
-
-## Configuration used for training   
-
-| Architecture                                                                                                  | Config file                                   | Training Script          |
-|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------|--------------------------|
-| [MaskRCNN Resnext101_32x8d FPN 3X](https://www.dropbox.com/sh/1098ym6vhad4zi6/AABe16eSdY_34KGp52W0ruwha?dl=0) | configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml | ./tools/train_net_dla.py |
-| [MaskRCNN Resnet101 FPN 3X](https://www.dropbox.com/sh/wgt9skz67usliei/AAD9n6qbsyMz1Y3CwpZpHXCpa?dl=0)        | configs/DLA_mask_rcnn_R_101_FPN_3x.yaml       | ./tools/train_net_dla.py |
-| [MaskRCNN Resnet50 FPN 3X](https://www.dropbox.com/sh/44ez171b2qaocd2/AAB0huidzzOXeo99QdplZRjua?dl=0)       | configs/DLA_mask_rcnn_R_50_FPN_3x.yaml       | ./tools/train_net_dla.py |
-
 
 ## Sample results from detectron2
 
@@ -70,57 +49,4 @@ python demo/demo.py --config-file configs/DLA_mask_rcnn_X_101_32x8d_FPN_3x.yaml 
 --- 
 
 
-Detectron2 is Facebook AI Research's next generation software system
-that implements state-of-the-art object detection algorithms.
-It is a ground-up rewrite of the previous version,
-[Detectron](https://github.com/facebookresearch/Detectron/),
-and it originates from [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark/).
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/1381301/66535560-d3422200-eace-11e9-9123-5535d469db19.png"/>
-</div>
-
-### What's New
-* It is powered by the [PyTorch](https://pytorch.org) deep learning framework.
-* Includes more features such as panoptic segmentation, densepose, Cascade R-CNN, rotated bounding boxes, etc.
-* Can be used as a library to support [different projects](projects/) on top of it.
-  We'll open source more research projects in this way.
-* It [trains much faster](https://detectron2.readthedocs.io/notes/benchmarks.html).
-
-See our [blog post](https://ai.facebook.com/blog/-detectron2-a-pytorch-based-modular-object-detection-library-/)
-to see more demos and learn about detectron2.
-
-## Installation
-
-See [INSTALL.md](INSTALL.md).
-
-## Quick Start
-
-See [GETTING_STARTED.md](GETTING_STARTED.md),
-or the [Colab Notebook](https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5).
-
-Learn more at our [documentation](https://detectron2.readthedocs.org).
-And see [projects/](projects/) for some projects that are built on top of detectron2.
-
-## Model Zoo and Baselines
-
-We provide a large set of baseline results and trained models available for download in the [Detectron2 Model Zoo](MODEL_ZOO.md).
-
-
-## License
-
-Detectron2 is released under the [Apache 2.0 license](LICENSE).
-
-## Citing Detectron
-
-If you use Detectron2 in your research or wish to refer to the baseline results published in the [Model Zoo](MODEL_ZOO.md), please use the following BibTeX entry.
-
-```BibTeX
-@misc{wu2019detectron2,
-  author =       {Yuxin Wu and Alexander Kirillov and Francisco Massa and
-                  Wan-Yen Lo and Ross Girshick},
-  title =        {Detectron2},
-  howpublished = {\url{https://github.com/facebookresearch/detectron2}},
-  year =         {2019}
-}
-```
