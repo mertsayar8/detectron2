@@ -8,7 +8,7 @@ This project is forked from https://github.com/hpanwar08/detectron2 and uses the
 
 PRImA dataset can be reached from https://www.primaresearch.org/datasets/Layout_Analysis.
 
-Conversion from PRImA PAGEXML to COCOJSON format can be done with running convert_prima_to_coco.py script. Input of the script should be --prima_datapath "path_to_your_folder". Your PRImA folder should have XML and Images folders as subfolders. AFter running the script, final destination should be like:
+Conversion from PRImA PAGEXML to COCOJSON format can be done with running convert_prima_to_coco.py script. Input of the script should be --prima_datapath "path_to_your_folder". Your PRImA folder should have XML and Images folders as subfolders. After running the script, final destination should be like:
   ```bash
         data/
         └── prima/
@@ -17,6 +17,8 @@ Conversion from PRImA PAGEXML to COCOJSON format can be done with running conver
             ├── License.txt
             └── annotations*.json
  ```
+This conversion script is updated from https://github.com/Layout-Parser/layout-model-training.
+
 cs555_project.py script or cs555_projectFinal.ipynb notebook should be run in order to make object predictions and dataset evaluations. This project is run on Google Colab.
 
 
