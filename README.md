@@ -1,4 +1,4 @@
-<img src=".github/Detectron2-Logo-Horz.svg" width="300" >
+
 
 ---
 
@@ -6,6 +6,7 @@
 
 This repo contains the training configurations, code and trained models trained on [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) dataset  using [Detectron2](https://github.com/facebookresearch/detectron2) implementation.  
 [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet) is a very large dataset for document layout analysis (document segmentation). It can be used to trained semantic segmentation/Object detection models.
+[PRI
 
 NOTE  
 * Models are trained on a portion of the dataset (train-0.zip, train-1.zip, train-2.zip, train-3.zip)
